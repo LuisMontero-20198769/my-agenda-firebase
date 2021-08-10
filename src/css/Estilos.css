@@ -1,0 +1,25 @@
+.contenedor{
+    padding-bottom: 30px;
+}
+
+.fila{
+    display: flex;
+}
+
+.colum{
+    padding-right: 30px;
+}
+
+.texto{
+    font-size: 18px;
+    width: 400px;
+    border-radius: 10px;
+    padding-top: 10px;
+}
+
+.boton{
+    margin-left: 220px;
+    font-size: 24px;
+    border-radius: 10px;
+    padding: 12px;
+}
