@@ -36,6 +36,13 @@ function contactoNuevo({addNuevoContacto}){
                     <input type="text" className="texto" ref={telefonoRef} />
                 </div>
             </div>
+
+            <div className="fila">
+                <div className="colum">
+                    <button className="boton" onClick={agregarContacto}>Agregar</button>
+                </div>
+            </div>
         </div>
     )
 }
+export default contactoNuevo;
