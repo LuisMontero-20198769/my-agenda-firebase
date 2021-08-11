@@ -3,11 +3,27 @@ import { baseDatos } from '../ConfigFirebase';
 import './contacto';
 
 
+
+
 function contactoNuevo({addNuevoContacto}){
     const nombreRef = useRef(null);
     const apellidoRef = useRef(null);
     const telefonoRef = useRef(null);
+     
+    function agregarContacto(){
+        const contacto = {
+            nombre: nombreRef.current.value,
+            apellido: apellidoRef.current.value,
+            telefono: telefonoRef.current.value,
+        }
 
+        baseDatos.collection('contactos').add(contacto);
+
+        nombreRef.current.value = "";
+        apellidoRef.current.value = "";
+        telefonoRef.current.value = "";
+        addNuevoContacto(contacto);
+    }
     return(
         <div className="contenedor">
             <div className="fila">

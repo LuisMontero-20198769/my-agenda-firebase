@@ -1,22 +1,33 @@
-import logo from './logo.svg';
+import {useState, useEffect} from 'react';
+import {baseDatos} from './ConfigFirebase';
+import ContactoNuevo from './componentes/contantoNew';
 import './App.css';
 
+
 function App() {
+  const [contactos, setContactos] = useState([]);
+
+  function addNuevoContacto(contacto){
+    setContactos(contactos.slice().push(contacto));
+  }
+
+  function CargarContactos(){
+    const listado = [];
+    baseDatos.collection('contactos').get()
+    .then(resultado => {
+      resultado.forEach( contacto=>{
+        listado.push(contacto.data());
+      })
+      setContactos(listado);
+    }).catch(error => console.log(error));
+  }
+
+  useEffect(CargarContactos, []);
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <ContactoNuevo addNuevoContacto = {addNuevoContacto}/>
       </header>
     </div>
   );
